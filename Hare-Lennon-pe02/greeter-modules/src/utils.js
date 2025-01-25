@@ -6,7 +6,7 @@ let temp = "utils.js temp value"; // does not conflict with `temp` in main.js
 
 const doubleIt = val =>  val * 2;
 
-const sayHello = (greeting, nameF , nameL, forcefully) => {
+const greet = (greeting, nameF , nameL, forcefully) => {
   const recipient  = (nameF ? nameF : defaultFirstName) + (" ") + (nameL ? nameL : defaultLastName) ;
   //recipient += (" ") + nameL ? nameL : defaultLastName ;  ;
   const str = `${greeting} ${recipient}`;
@@ -14,4 +14,4 @@ const sayHello = (greeting, nameF , nameL, forcefully) => {
 };
 
 // export our "public" symbols, everything else in this file is "private" by default
-export { defaultFirstName, defaultLastName, doubleIt, sayHello, temp, meaningOfLife };
+export { defaultFirstName, defaultLastName, doubleIt, greet, temp, meaningOfLife };

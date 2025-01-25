@@ -1,13 +1,6 @@
-// explictly import only the functions we are interested in
 
-// 1 - get a reference to the button
-// 2 - add a click event to button that calls a `sayHello` function
-// 3 - create a `sayHello()` function
-// 3A - get name of person from the <input>
-// 3B - get a reference to the #output <p>
-// 3C - update HTML of #output <p>
 
-import { sayHello, doubleIt, defaultFirstName, defaultLastName, meaningOfLife } from "./utils.js";
+import { greet, doubleIt, defaultFirstName, defaultLastName, meaningOfLife } from "./utils.js";
 import * as utils from  "./utils.js"; // OR give all of the exported `utils` functions a namespace
 
 window.onload 
@@ -29,10 +22,10 @@ let forcefully = cbForcefully.checked;
 
 //cbForcefully.onchange = () => forcefully = cbForcefully.checked;
 cbForcefully.onchange = e => forcefully = e.target.checked;
-helloButton.onclick = () => output.innerHTML = sayHello("Hello",input1.value.trim(), input2.value.trim() ,forcefully);
-goodbyeButton.onclick = () => output.innerHTML = sayHello("Goodbye",input1.value.trim(),input2.value.trim() ,forcefully);
+helloButton.onclick = () => output.innerHTML = greet("Hello",input1.value.trim(), input2.value.trim() ,forcefully);
+goodbyeButton.onclick = () => output.innerHTML = greet("Goodbye",input1.value.trim(),input2.value.trim() ,forcefully);
 
-console.log("sayHello('Hey There') = ", sayHello('Hey there'));
+console.log("greet('Hey There') = ", greet('Hey there'));
 console.log("doubleIt(10) = ", doubleIt(10));
 console.log("defaultName = ", defaultFirstName); // FAILS - we need to import it
 //console.log("meaningOfLife = ", meaningOfLife); // FAILS - it is not being exported by utils.js
