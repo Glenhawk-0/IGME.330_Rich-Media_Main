@@ -1,11 +1,11 @@
 footer,header,main{
-  width: 500px;
+  
 }
 
 h1{
   font-family: sans-serif;
   color: white;
-  background-color: darkblue;
+  
   padding: .3rem;
   text-align:center;
 }
@@ -18,5 +18,27 @@ footer{
 }
 
 button,input,p{
-  font-size:1.5em;
+  font-size: 14pt;
+}
+
+button{
+  height: 50px; 
+width: 150px ;
+
+}
+
+
+
+#input-firstname , #input-lastname {
+  width: 45%;
+  height: 50px; 
+}
+
+@media only screen and (min-width: 1024px) {
+  body{
+   padding: 100px;
+   background-color: red;
+}
+  
+
 }
