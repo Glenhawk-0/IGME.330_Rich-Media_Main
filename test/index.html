@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button>Function </button>
+
+    <script>
+        function add3(a, b, c) {
+            return a + b + c;
+        }
+
+        const add3 = (a, b, c) => {
+            return a + b + c;
+        }
+        const add3 = (a, b, c) => a + b + c;
+
+
+
+        function add2Numbers(num1, num2) {
+
+            let numSum = num1 + num2
+            return numSum
+        }
+
+        const add2Numbers = (num1, num2) => num1 + num2; //automatically returns
+
+        document.querySelector("button").addEventListener("click", function (e) {
+            console.log(add2Numbers(4, 5))
+        })
+
+        document.querySelector("button").addEventListener("click", (e) => {
+            console.log(add2Numbers(4, 5))
+        })
+
+
+
+    </script>
+
+</body>
+
+</html>
