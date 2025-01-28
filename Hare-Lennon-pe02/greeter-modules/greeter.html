@@ -3,7 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <title>Greeter (with modules)</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="styles/default-styles.css" />
+
+
     <script type="module" src="src/main.js"></script>
   </head>
 <body>
@@ -13,10 +20,16 @@
   <main>
     <button id="btn-hello">Hello</button>
     <button id="btn-goodbye">Goodbye</button>
-    <input id="input-firstname" placeholder="Type in your name">
+
+    <input type="checkbox" id="cb-forcefully">
+      <label for="cb-forcefully"> Shoutify</label>
+
+    <br>
+    <input id="input-firstname" placeholder="Type in your First name">
+    
+    <input id="input-lastname" placeholder="Type in your Last name">
     <p>
-      <input type="checkbox" id="cb-forcefully">
-      <label for="cb-forcefully"> Forcefully</label>
+      
     </p>
     <p id="output">???</p>
   </main>
