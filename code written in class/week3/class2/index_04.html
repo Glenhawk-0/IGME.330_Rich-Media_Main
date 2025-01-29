@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template Strings</title>
+  </head>
+  <body>
+    
+    <h2>Exotic Pets</h2>
+    <ul id="the_list">
+        <li>
+            <h4>Peacock</h4>
+            <p><strong>Care:</strong> High</p>
+            <p><strong>Danger:</strong> Low</p>
+            <p><strong>Epicness:</strong> High</p>
+        </li>
+    </ul>
+
+
+    <script>
+        
+        const pets = [
+            {
+                name: "Peacock",
+                care: .7,
+                danger: .1,
+                epicness: .8
+            },
+            {
+                name: "Ostrich",
+                care: .5,
+                danger: .6,
+                epicness: .2
+            },
+            {
+                name: "Dragon",
+                care: .9,
+                danger: .9,
+                epicness: 1
+            }
+        ]
+
+        // OPTION 1
+        // const pet_to_html = ({name, care, danger, epicness}) => {
+        // OPTION 2
+        const pet_to_html = (pet) => {
+            const {name, care, danger, epicness} = pet;
+            // OPTION 3
+            // const name = pet.name;
+            // const care = pet.care;
+            // ...
+
+            // The above three options are all equivalent to each other; each
+            // should be used where appropriate to improve readability.
+
+            const rating_to_string = (rating) => {
+                if (rating <= 0.3) return 'Low';
+                if (rating <= 0.6) return 'Medium';
+                return 'High';
+            };
+
+            return `
+                <li>
+                    <h4>${name}</h4>
+                    <p><strong>Care:</strong>${rating_to_string(care)}</p>
+                    <p><strong>Danger:</strong>${rating_to_string(danger)}</p>
+                    <p><strong>Epicness:</strong>${rating_to_string(epicness)}</p>
+                </li>
+            `;
+        }
+
+        const all_pets_to_html = (pets) => {
+            // do a for loop maybe
+            // go through all of pets, print pet_to_html for each one
+            // combine them somewhow
+            const pet_html_array = pets.map(pet => {
+                return pet_to_html(pet);
+            })
+
+            const pet_html = pet_html_array.join('\n');
+
+            return `
+                <ul>
+                    ${pet_html}
+                </ul>
+            `;
+        };
+
+        const pet_html = all_pets_to_html(pets);
+
+        const set_html = (html_string) => {
+            document.querySelector('#the_list').outerHTML = html_string;
+        }
+
+        set_html(pet_html);
+
+    </script>
+  </body>
+</html>
