@@ -1,0 +1,21 @@
+[
+    {
+        "name": "Peacock",
+        "care": 0.7,
+        "danger": 0.1,
+        "epicness": 0.8
+    },
+    {
+        "name": "Ostrich",
+        "care": 0.5,
+        "danger": 0.6,
+        "epicness": 0.2
+    },
+    {
+        "name": "Dragon",
+        "care": 0.9,
+        "danger": 0.9,
+        "epicness": 1
+    }   
+]
+
