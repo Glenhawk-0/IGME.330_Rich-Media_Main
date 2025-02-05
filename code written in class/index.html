@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+<canvas style = "background-color: red;"  id = "the-canvas" width="800" height="800" ></canvas>
+
+<script>
+    const canvas = document.querySelector('#the-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    
+    ctx.fillStyle = 'lightblue';
+    ctx.fillRect(20,20, 400,400);
+
+
+// make 100 random numbers
+const aHundredNumbers = [];
+for(i = 0 ; i < 100 ; i++){
+const num = Math.random();
+console.log(`${i}: ${num}`);
+
+//const r = Math.floor(Math.random() * 256 );
+//const g = Math.floor(Math.random() * 256 ); 
+//const b = Math.floor(Math.random() * 256 ); 
+aHundredNumbers.push (num);
+}
+
+
+aHundredNumbers.forEach(num => {
+   creatRect(num*760,num*760,num*30,num*30,'orange') 
+});
+
+
+function creatRect(x,y, w,h,col){
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = 'black';
+
+    const r = Math.floor(Math.random() * 256 );
+    const g = Math.floor(Math.random() * 256 ); 
+    const b = Math.floor(Math.random() * 256 ); 
+
+    const color = `rgb(${r} ${g} ${b})`
+
+
+    ctx.fillStyle = color;
+    ctx.fillRect(x,y, w,h);
+
+    ctx.stroke();
+}
+    
+</script>
+
+
+    
+</body>
+</html>
