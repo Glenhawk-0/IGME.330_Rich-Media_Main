@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+<canvas style = "background-color: lightgray;"  id = "the-canvas" width="800" height="800" ></canvas>
+
+<script>
+    const canvas = document.querySelector('#the-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    const width = canvas.width;
+    const height = canvas.height;
+    /*
+    const rectTopLeft = [
+    width/2 -rectWidth /2,
+    height / 2 - rectHeight/2
+
+    ];*/
+
+    const rectWidth = 200;
+    const rectHeight = 200;
+    ctx.fillStyle = 'bisque';
+    ctx.fillRect(width/2 - rectHeight/2, height/2 - rectHeight/2 , rectWidth,rectHeight);
+
+    //draw rotated rect
+    ctx.fillStyle = 'green';
+    ctx.translate(-(rectWidth/2),-(rectHeight/2));
+    ctx.rotate(Math.PI/60);
+    ctx.translate((rectWidth/2),(rectHeight/2));
+    ctx.fillRect(width/2 - rectHeight/2, height/2 - rectHeight/2 , rectWidth,rectHeight);
+   
+    //fucc this aint it , 
+
+    
+
+
+    /*function rotateObject(angle) {
+
+    }*/
+
+</script>
+
+
+    
+</body>
+</html>

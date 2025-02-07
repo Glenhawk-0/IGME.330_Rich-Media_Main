@@ -46,16 +46,17 @@
     //line(mouseX ,mouseY,pmouseX,pmouseY) // );
 
     function drawGreenLine(x1,y1,x2,y2) {
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = 'green';
-        ctx.beginPath();
+        ctx.lineWidth = 2; // 
+        ctx.strokeStyle = 'green'; //
+        ctx.beginPath(); // 
 
         ctx.moveTo(x1,y1);
         ctx.lineTo(x2,y2);
 
 
-        ctx.stroke();
-        ctx.closePath();
+        
+        ctx.closePath();//connects last point to beggining point
+        ctx.stroke(); // actually draws it on the canvas
 
     }
 
