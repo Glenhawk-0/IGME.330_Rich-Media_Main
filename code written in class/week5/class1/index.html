@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+        <canvas style = "background-color: lightgray;" width="800" height="800"></canvas>
+
+    <script>
+
+const rotationPerSecond = Math.PI/2;
+
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
+let mousPos = [0,0];
+
+canvas.addEventListener('mousemove' , (e) => {
+const boundingRect = canvas.getBoundingClientRect();
+const adjustedX = e.clientX - boundingRect.x;
+const adjustedY = e.clientY - boundingRect.y;
+console.log(adjustedX,adjustedY);
+
+mousPos[0] = adjustedX;
+mousPos[1] = adjustedY
+
+
+});
+
+ctx.fillStyle = '#F76902';
+ctx.translate(200,200);
+ctx.rotate(Math.PI/32);
+ctx.translate(-200,-200);
+ctx.fillRect(100,100,200,200)
+
+let frame_index = 0;
+let last_frame_end = 0;
+const animate = (t) =>  {
+
+const frame_time = t - last_frame_end;
+const fps = Math.round(1000/frame_time);
+//console.log('hi')
+//console.log(t)
+//console.log(frame_time);
+ //console.log(fps);
+
+//
+  ctx.clearRect(0,0,800,800)// clear's canvas
+  
+  const rotation = rotationPerSecond * (frame_time / 1000);
+
+  //radians/ * seconds
+// seconds
+
+ctx.fillStyle = '#F76902';
+const rotatationOrign = mousPos;
+ctx.translate(rotatationOrign[0],rotatationOrign[1]);
+ctx.rotate(rotation);
+ctx.translate(-200,-200);
+ctx.fillRect(mousPos[0],mousPos[1],200,200)
+
+//
+
+frame_index++;
+last_frame_end = t;
+requestAnimationFrame(animate);
+}
+
+animate();
+
+
+    </script>
+
+
+    
+</body>
+</html>
