@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>First Canvas</title>
+    <style>
+        canvas {
+            border: 1px solid gray;
+        }
+    </style>
+    <script>
+        // #0 - in this class we will always use ECMAScript 5's "strict" mode
+        // See what 'use strict' does here:
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode
+        "use strict";
+
+        // #1 call the `init` function after the pages loads
+
+        // handy helper functions!
+
+
+
+        // 
+        window.onload = init;
+
+        let ctx;
+
+
+        function init() {
+            console.log("page loaded!");
+            // #2 Now that the page has loaded, start drawing!
+
+            // A - `canvas` variable points at <canvas> tag
+            let canvas = document.querySelector("canvas");
+
+            // B - the `ctx` variable points at a "2D drawing context"
+            ctx = canvas.getContext("2d");
+
+            // C - all fill operations are now in maroon
+            ctx.fillStyle = "maroon";
+
+            // D - fill a rectangle with the current fill color
+            ctx.fillRect(20, 20, 600, 440);
+            ctx.strokeStyle = "purple";
+            const borderWidth = 10;
+            ctx.lineWidth = borderWidth;
+            ctx.strokeRect(20, 20, 600, 440);
+
+
+            // part 1
+            ctx.strokeStyle = "blue";
+            ctx.fillStyle = "red";
+            ctx.fillRect(50, 50, 45, 70);
+
+            ctx.fillStyle = "yellow";
+            ctx.fillRect(150, 50, 17, 90);
+
+            ctx.fillStyle = "orange";
+            ctx.fillRect(70, 140, 60, 45);
+
+            //part 2
+
+            //square
+            ctx.fillStyle = "darkblue";
+            ctx.beginPath();
+            ctx.rect(180, 130, 100, 100);
+            ctx.fill();
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.lineWidth = borderWidth;
+            ctx.closePath();
+
+            //arc's
+            ctx.beginPath();
+            ctx.fillStyle = "yellow"
+            ctx.arc(100, 350, 50, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.closePath();
+
+
+            ctx.beginPath()
+            ctx.fillStyle = "black";
+            ctx.arc(70, 300, 10, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.stroke();
+            ctx.closePath();
+
+            ctx.beginPath();
+            ctx.arc(130, 298, 15, 0, 2 * Math.PI);
+            ctx.stroke();
+            ctx.closePath();
+
+            //line's
+            ctx.lineWidth = 20; // 
+            ctx.strokeStyle = 'green'; //
+            ctx.beginPath(); // 
+            ctx.moveTo(40, 420);
+            ctx.lineTo(600, 420);
+            ctx.stroke(); // 
+            ctx.closePath();//
+
+                
+            //part3
+
+
+            debugger
+            update();
+
+        }//end of Init
+
+        function update(){
+            requestAnimationFrame(update);
+            drawRandomRect();
+        }
+
+        function drawRandomRect() {
+
+            ctx.fillStyle = getRandomColor();
+            ctx.strokeStyle = getRandomColor();
+            ctx.lineWidth = getRandomInt(2,12);
+            ctx.beginPath();
+            ctx.rect(getRandomInt(0, 640),getRandomInt(0,480),getRandomInt(10,90),getRandomInt(10,90));
+            ctx.fill();
+            
+            ctx.stroke();
+            ctx.closePath();
+
+
+        }
+
+        function getRandomColor() {
+            function getByte() {
+                return 55 + Math.round(Math.random() * 200);
+            }
+            return "rgba(" + getByte() + "," + getByte() + "," + getByte() + ",.8)";
+        }
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+
+
+        //END OF SCRIPT
+    </script>
+</head>
+
+<body>
+    <canvas width="640" height="480">
+        Get a real browser!
+    </canvas>
+</body>
+
+</html>
