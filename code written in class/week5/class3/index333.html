@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+        <canvas style = "background-color: lightgray;" width="800" height="800"></canvas>
+
+    <script>
+
+const shapes = [];
+const rotationPerSecond = Math.PI/2;
+
+const canvas = document.querySelector('canvas');//
+const ctx = canvas.getContext('2d');//
+/////////////////////////////////////////
+
+const drawTriangle = (ctx,x,y) => {
+
+    const upPoint = [x,y];
+    const downLeftPoint = [x -20,y +20];
+    const downRightPoint = [x +20,y +20];
+    ctx.beginPath();
+    ctx.fillStyle = "yellow";
+    ctx.moveTo(upPoint[0],upPoint[1]);
+    ctx.lineTo(downLeftPoint[0],downLeftPoint[1]);
+    ctx.lineTo(downRightPoint[0],downRightPoint[1]);
+
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    
+}
+
+
+
+canvas.addEventListener('click', (e) =>{
+
+    const boundingRect = canvas.getBoundingClientRect()
+    const mouseX = e.clientX - boundingRect.x;
+    const mouseY = e.clientY - boundingRect.y;
+
+    //draw trinag
+    //drawTriangle(ctx,mouseX,mouseY);
+
+    //sdaasf
+    const newTriangle = {
+        position: [mouseX, mouseY]
+    };
+
+    shapes.push(newTriangle);
+
+});
+
+
+let frame_index = 0;
+let last_frame_end = 0;
+
+const animate = (t = 0) =>  {
+
+const frame_time = t - last_frame_end;
+const fps = Math.round(1000/frame_time);
+ //console.log(fps);
+
+//
+  ctx.clearRect(0,0,800,800)// clear's canvas
+  
+
+ctx.save();
+
+for(let i = 0; i < shapes.length; i++){
+    const shape = shapes[i];
+    drawTriangle(ctx, shape.position[0],shape.position[1] )
+}
+
+
+ctx.restore();
+//
+
+frame_index++;
+last_frame_end = t;
+requestAnimationFrame(animate);
+};
+
+requestAnimationFrame(animate);
+
+
+    </script>
+
+
+    
+</body>
+</html>
