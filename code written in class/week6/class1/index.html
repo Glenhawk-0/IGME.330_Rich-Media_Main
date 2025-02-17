@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+        <canvas style = "background-color: lightgray;" width="800" height="800"></canvas>
+
+    <script>
+
+const rotationPerSecond = Math.PI/2;
+
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
+let mousPos = [0,0];
+
+canvas.addEventListener('mousemove' , (e) => {
+const boundingRect = canvas.getBoundingClientRect();
+const adjustedX = e.clientX - boundingRect.x;
+const adjustedY = e.clientY - boundingRect.y;
+//console.log(adjustedX,adjustedY);
+
+mousPos[0] = adjustedX;
+mousPos[1] = adjustedY
+
+
+});
+
+//const gradient = ctx.createLinearGradient(200,400,600,400);
+
+/*
+gradient.addColorStop(0, '#F76902')
+gradient.addColorStop(0.33, '#000000')
+gradient.addColorStop(0.66, '#7C878E')
+gradient.addColorStop(1, '#F76902')
+*/
+
+//
+const createlinearGradient = (colors) => {
+    let gradient = ctx.createLinearGradient(200,400,600,400);
+
+    for (let i = 0; i < colors.length;i++){
+        const col = colors[i];
+        console.log(col)
+        gradient.addColorStop(i/colors.length,col);
+
+    }
+
+    return gradient;
+
+};
+
+
+const createRadialGradient = (startPos,endPos,colors) => {
+    let gradient = ctx.createRadialGradient(
+        startPos[0],startPos[1],600,
+        endPos[0],endPos[1] ,300 );
+
+    for (let i = 0; i < colors.length;i++){
+        const col = colors[i];
+        console.log(col)
+        gradient.addColorStop(i/colors.length,col);
+
+    }
+
+    return gradient;
+
+};
+
+const gradient = createRadialGradient([400,400],mousPos,['#F76902','#000000','#7C878E' ,'#F76902'])
+
+//ctx.fillStyle = createlinearGradient(['#F76902','#000000','#7C878E' ,'#F76902']);
+ctx.fillStyle = gradient;
+ctx.fillRect (0,0,800,800);
+
+
+    </script>
+
+
+    
+</body>
+</html>
