@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Pixels</title>
+    
+</head>
+<body>
+    <canvas id="pixelCanvas" width="600" height="400"></canvas>
+
+    <script type="module">
+        // Get the canvas element and its context
+        const canvas = document.getElementById('pixelCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Create an array of pixel objects
+        const pixels = [
+            { x: 100, y: 100, size: 20, color: 'red' },
+            { x: 200, y: 150, size: 15, color: 'blue' },
+            { x: 300, y: 200, size: 25, color: 'green' },
+            { x: 150, y: 250, size: 10, color: 'purple' },
+            { x: 400, y: 100, size: 30, color: 'orange' },
+            { x: 250, y: 300, size: 18, color: 'teal' },
+            { x: 450, y: 200, size: 22, color: 'magenta' },
+            { x: 350, y: 150, size: 12, color: 'yellow' },
+            { x: 500, y: 300, size: 28, color: 'cyan' },
+            { x: 150, y: 150, size: 16, color: 'lime' }
+        ];
+        
+        // Function to draw a pixel
+        const drawPixel = ({ x, y, size, color }) => {
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, size, size);
+        };
+        
+        // Optional: Add some animation or interactivity
+        const update = () => {
+            
+
+            
+            
+            requestAnimationFrame(update);
+        };
+        
+        update();
+    </script>
+</body>
+</html>
