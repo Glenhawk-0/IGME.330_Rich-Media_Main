@@ -5,7 +5,9 @@ const drawParams = {
     showGradient : true,
     showBars : true,
     showCircles : true,
-    showNoise : true
+    showNoise : false,
+    showInvert : false,
+    showEmboss : false
 }
 
 
@@ -21,9 +23,14 @@ const drawParams = {
 import * as utils from './utils.js';
 
 // 1 - here we are faking an enumeration
-const DEFAULTS = Object.freeze({
+
+/*const DEFAULTS = Object.freeze({
 	sound1  :  "media/New Adventure Theme.mp3"
-});
+});/**/ 
+
+const DEFAULTS = Object.freeze({
+	sound1  :  "media/Neon Cheese irritation.mp3"
+});/**/ 
 
 function init(){
    //debugger
@@ -111,7 +118,12 @@ function setupUI(canvasElement){
   const circlesButton = document.querySelector("#circlesCB") //B.B.3
   circlesButton.checked = true;
   const noiseButton = document.querySelector("#noiseCB") //B.B.4
-  noiseButton.checked = true;
+  noiseButton.checked = false;
+  const invertButton = document.querySelector("#invertCB") //B.C.5
+  invertButton.checked = false;
+
+  const embossButton = document.querySelector("#embossCB") //B.C.6
+  invertButton.checked = false;
 
   gradientButton.addEventListener ('change', function() {
     if (this.checked == true) {
@@ -160,6 +172,32 @@ function setupUI(canvasElement){
         console.log('Noise is Off');
     }
   });  
+ 
+  invertButton.addEventListener ('change', function() {
+      if (this.checked == true) {
+          // Code to run when checkbox is checked
+          drawParams.showInvert = true;
+          console.log('Invert is On');
+      } else {
+          // Code to run when checkbox is unchecked
+          drawParams.showInvert = false;
+          console.log('Invert is Off');
+      }
+    });  
+
+    embossButton.addEventListener ('change', function() {
+        if (this.checked == true) {
+            // Code to run when checkbox is checked
+            drawParams.showEmboss = true;
+            console.log('Emboss is On');
+        } else {
+            // Code to run when checkbox is unchecked
+            drawParams.showEmboss = false;
+            console.log('Emboss is Off');
+        }
+      });  
+
+
 
 
   
