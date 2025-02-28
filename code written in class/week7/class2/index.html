@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        //make an array of numbers 0 - 9
+
+        //let  myArray = [0,1,2,3,4,5,6,7,8,9]
+
+
+                              // empty spots |  Function
+        let myarray =  Array.from({length: 100}, (_,i) => i );  /// ooooooh , fun
+        console.log(myarray);
+
+        let nums =  [...Array(16).keys()];  // good as well.
+        console.log(nums);
+
+        let numsPlus1 = nums.map(n => {
+            return n + 1;
+        });
+
+        console.log(numsPlus1)
+
+
+        let squares = nums.map (n => {
+            //return n* n ;
+            return n ** 2;
+            //return Math.pow(n,2);
+        })
+
+        console.log(squares)
+
+        let names = [
+        'laila','Durt','Wynterbottom', 'Maximus',  'Letterayche'
+
+        ];
+
+
+
+
+        const greet = (name) => `hello, ${name}!`;
+
+        const greetings = names.map(greet);
+
+        /*
+        const greetings =  nums.map (n =>{
+
+            return "hello " + names[n];
+        });*/
+
+        console.log(greetings);
+
+
+        //make an array of all even numbers 0 - 18
+
+        
+        const evens = nums.map(n => n * 2);
+        const odds = evens.map(n=> n + 1);/**/
+
+        /*
+        const evens = [...Array(20).keys()]
+        .filter(n => {
+            return n % 2 === 0 ; 
+        })/**/
+    
+        console.log(evens);
+       console.log(odds);
+
+        const sayHelloOddsArray = [...Array(20).keys()]
+        .filter(n => {
+            return n % 2 !== 0 ; 
+            
+        })
+        .map(n => greet(n))
+
+        console.log (sayHelloOddsArray)
+
+/*
+        const odds = nums
+        .map(n => n * 2)
+        .map(n => )
+*/
+
+        // sum up even
+        //let sum = 0;
+        //for (let i = 0; i < evens.length; i++)
+
+
+        let sum = evens.reduce((acc,n) => {
+            return acc + n;
+
+        }, 0);
+
+        let reversed = evens. reduce((acc,n) => {
+            return [n, ...acc]
+        
+        }, [])
+
+        console.log(sum)
+        console.log(reversed)
+
+
+        let oddsINOneString = odds.reduce((acc, str) => {
+            return acc + str
+        },'')
+
+        console.log(oddsINOneString)
+
+
+    </script>
+    
+</body>
+</html>
