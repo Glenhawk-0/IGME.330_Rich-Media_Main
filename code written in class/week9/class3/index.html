@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<audio></audio>
+
+    
+    <script>
+
+
+
+        const audioCtx = newAudioContext();
+ const audioElement = document.querySelector('audio');
+
+        const track = new MediaElementAudioSourceNode(audioCtx, {
+            mediaElement: audioElement
+        });
+
+
+        const gain = new GainNode(audioCtx,{
+            gain: 1
+        });
+
+        track.connect(gain).connect(audioCtx.destination);
+    </script>
+
+</body>
+</html>

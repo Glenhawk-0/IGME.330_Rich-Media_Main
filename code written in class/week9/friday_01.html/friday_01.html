@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      canvas {
+        display: block;
+        background-color: #f0f0f0;
+        margin: 20px 0;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <audio src="werner_herzog_on_chickens.mp3" crossorigin="anonymous"></audio>
+
+    <button id="play_button">Play!</button>
+    <input type="range" id="volume" min="0" max="2" value="2" step="0.01" />
+    <canvas id="oscilloscope" width="600" height="200"></canvas>
+    
+    <script>
+      const chicken_audio = document.querySelector("audio");
+
+      // Web Audio API: https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
+      const audioCtx = new AudioContext();
+      // MediaElementAudioSourceNode: https://developer.mozilla.org/en-US/docs/Web/API/MediaElementAudioSourceNode
+      const track = new MediaElementAudioSourceNode(audioCtx, {
+        mediaElement: chicken_audio,
+      });
+
+      // GainNode: https://developer.mozilla.org/en-US/docs/Web/API/GainNode
+      // Create the node that controls the volume.
+      const gainNode = new GainNode(audioCtx, {
+        gain: 2,
+      });
+
+      // StereoPannerNode: https://developer.mozilla.org/en-US/docs/Web/API/StereoPannerNode
+      const panner = new StereoPannerNode(audioCtx, {
+        pan: 0,
+      });
+
+      // AnalyserNode: https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode
+      const analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 2048;
+
+      // console.log('hello');
+      track
+        .connect(panner)
+        .connect(gainNode)
+        .connect(analyser)
+        .connect(audioCtx.destination);
+
+      ///////
+      // CONTROLS
+      ///////
+      const playButton = document.querySelector("#play_button");
+      playButton.addEventListener("click", () => {
+        audioCtx.resume();
+        chicken_audio.play();
+        // Start the visualization
+        draw();
+      });
+
+      // Mouse position controls pan and gain values
+      let mousePos;
+      document.addEventListener("mousemove", (event) => {
+        mousePos = {
+          x: event.clientX,
+          y: event.clientY,
+        };
+
+        const newPan = (mousePos.x / window.innerWidth) * 2 - 1;
+
+        panner.pan.value = newPan;
+
+        const newGain = (mousePos.y / window.innerHeight) * 2;
+        gainNode.gain.value = newGain;
+      });
+
+      // const volumeControl = document.querySelector("#volume");
+      // volumeControl.addEventListener("input", () => {
+      //   gainNode.gain.value = volumeControl.value;
+      // });
+
+      ///////
+      // VISUALIZER
+      ///////
+
+      // frequencyBinCount: https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/frequencyBinCount
+      const bufferLength = analyser.frequencyBinCount;
+      const dataArray = new Uint8Array(bufferLength);
+
+      // Canvas setup for oscilloscope
+      const canvas = document.getElementById('oscilloscope');
+      const canvasCtx = canvas.getContext('2d');
+      const WIDTH = canvas.width;
+      const HEIGHT = canvas.height;
+
+      // Draw function for the oscilloscope visualization
+      const draw = () => {
+        // Request next animation frame
+        const drawVisual = requestAnimationFrame(draw);
+        
+        // Get waveform data
+        analyser.getByteTimeDomainData(dataArray);
+        
+        // Clear canvas
+        canvasCtx.fillStyle = 'rgb(200, 200, 200, .05)';
+        canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+        
+        // Setup line style
+        canvasCtx.lineWidth = 1;
+        canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
+        canvasCtx.beginPath();
+        
+        // Calculate width of each segment
+        const sliceWidth = WIDTH / bufferLength;
+        let x = 0;
+        
+        // Draw the waveform
+        for (let i = 0; i < bufferLength; i++) {
+          const v = dataArray[i] / 128.0;
+          const y = v * (HEIGHT / 2);
+          
+          if (i === 0) {
+            canvasCtx.moveTo(x, y);
+          } else {
+            canvasCtx.lineTo(x, y);
+          }
+          
+          x += sliceWidth;
+        }
+        
+        // Complete the path and draw
+        canvasCtx.lineTo(WIDTH, HEIGHT / 2);
+        canvasCtx.stroke();
+      };
+    </script>
+  </body>
+</html>
+
+<!-- // const volumeControl = document.querySelector('[data-action="volume"]');
+      // volumeControl.addEventListener(
+      //   "input",
+      //   () => {
+      //     gainNode.gain.value = volumeControl.value;
+      //   },
+      //   false
+      // );
+
+      // Create the node that controls the panning
+      // const panner = new StereoPannerNode(audioCtx, { pan: 0 });
+
+      // const pannerControl = document.querySelector('[data-action="panner"]');
+      // pannerControl.addEventListener(
+      //   "input",
+      //   () => {
+      //     panner.pan.value = pannerControl.value;
+      //   },
+      //   false
+      // );
+
+      // connect our graph
+      // track.connect(gainNode).connect(panner).connect(audioCtx.destination); -->
