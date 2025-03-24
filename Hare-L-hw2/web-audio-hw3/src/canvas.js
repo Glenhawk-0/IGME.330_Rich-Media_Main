@@ -114,6 +114,9 @@ function draw(params = {}, spriteParams1, spriteParams2) {
 
 
     //sprite 1
+    spriteParams1.update(audioData);
+    spriteParams1.draw(ctx,canvasHeight,audioData);
+    /*
     if (true == true) {
         let maxRadius = canvasHeight / 2;
         ctx.save();
@@ -152,10 +155,13 @@ function draw(params = {}, spriteParams1, spriteParams2) {
             ctx.restore();
         }
         ctx.restore();
-    }
+    }*/
 
 
     //sprite 2
+    spriteParams2.update(audioData);
+    spriteParams2.draw(ctx,canvasHeight,audioData);
+    /*
     if (true == true) {
         let maxRadius = canvasHeight / 2;
         ctx.save();
@@ -194,7 +200,7 @@ function draw(params = {}, spriteParams1, spriteParams2) {
             ctx.restore();
         }
         ctx.restore();
-    }
+    }*/
 
 
 
