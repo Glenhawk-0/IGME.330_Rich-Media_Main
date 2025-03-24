@@ -86,14 +86,14 @@ function draw(params = {}, spriteParams1, spriteParams2) {
 
             let circleRadius = percent * maxRadius;
             ctx.beginPath();
-            ctx.fillStyle = utils.makeColor(255, 111, 111, .34 - percent / 3.0);
+            ctx.fillStyle = utils.makeColor(255, 0, 180, .34 - percent / 3.0);
             ctx.arc(canvasWidth / 2, canvasHeight / 2, circleRadius, 0, 2 * Math.PI, false);
             ctx.fill();
             ctx.closePath();
 
             //blue-ish circles bigger, more transparent
             ctx.beginPath();
-            ctx.fillStyle = utils.makeColor(0, 0, 255, .10 - percent / 10.0);
+            ctx.fillStyle = utils.makeColor(0, 0, 200, .10 - percent / 10.0);
             ctx.arc(canvasWidth / 2, canvasHeight / 2, circleRadius * 1.5, 0, 2 * Math.PI, false)
             ctx.fill();
             ctx.closePath();
@@ -101,7 +101,7 @@ function draw(params = {}, spriteParams1, spriteParams2) {
             // yellow-ish circles, smaller 
             //ctx.save();  // maybe its this.  update: it was
             ctx.beginPath();//huh? theirs a problem here... but.. what?
-            ctx.fillStyle = utils.makeColor(200, 200, 0, .5 - percent / 5.0);
+            ctx.fillStyle = utils.makeColor(200, 0, 0, .5 - percent / 5.0);
             ctx.arc(canvasWidth / 2, canvasHeight / 2, circleRadius * .50, 0, 2 * Math.PI, false);
             ctx.fill();
             ctx.closePath();
@@ -220,13 +220,15 @@ function draw(params = {}, spriteParams1, spriteParams2) {
     // B) Iterate through each pixel, stepping 4 elements at a time (which is the RGBA for 1 pixel)
     for (let i = 0; i < length; i += 4) {
         // C) randomly change every 20th pixel to red
-        if (params.showNoise && Math.random() < .05) {
+        if (params.showNoise && Math.random() < 0.02/*.05*/) {
             // data[i] is the red channel
             // data[i+1] is the green channel
             // data[i+2] is the blue channel
             // data[i+3] is the alpha channel
             data[i] = data[i + 1] = data[i + 2] = 0; // zero out the red and green and blue channels
-            data[i] = 255; // make the red channel 100% red
+            data[i] = 180; // make the red channel 100% red
+            data[i+ 1] = 180;
+            data[i+ 2] = 180;/**/
         } // end if
 
         if (params.showInvert == true) {

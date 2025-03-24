@@ -1,21 +1,6 @@
 import * as audio from './audio.js';
 import * as canvas from './canvas.js';
 
-/*
-const getDog = () => {
-    return fetch = ('https://dog.ceo/api/breeds/image/random') 
-        .then(response => {
-            return response.text();
-        })
-        
-        .then(result => {
-            const data = JSON.parse(result);
-    
-            document.querySelector('img').src = data.message;
-    
-        })
-    
-    };*/
 
 const drawParams = {
     showGradient: true,
@@ -43,31 +28,21 @@ class Sprite {
         this.outerColorG = outerColorG;
         this.outerColorB = outerColorB;
 
-        // Max size of the sprite's circles
-        //this.maxRadius = 0;  // Will be set during setup
     }
 
     update(audioData) {
-        // Update the max radius based on the canvas height
-        //this.maxRadius = canvasHeight / 4; // You can change this logic to suit the effect you want
-        
-        // Calculate the average audio amplitude (from the audioData)
         this.audioData = audioData;
     }
 
     draw(ctx,canvasHeight,audioData) {
-        
-        // Loop through the audio data and draw the sprite based on the amplitude data
         let maxRadius = canvasHeight / 2;
         ctx.save();
         ctx.globalAlpha = 0.5;
 
         for (let i = 0; i < this.audioData.length; i++) {
-            // Get the percentage of amplitude for this frequency band
             let percent = this.audioData[i] / 255;
             let circleRadius = percent * maxRadius;
 
-            // Draw the red-ish inner circle
             ctx.beginPath();
             ctx.fillStyle = utils.makeColor(this.innerColorR, this.innerColorG, this.innerColorB, 0.34 - percent / 3.0);
             
@@ -75,62 +50,20 @@ class Sprite {
             ctx.fill();
             ctx.closePath();
 
-            // Draw the blue-ish outer circle
             ctx.beginPath();
-            //ctx.fillStyle = utils.makeColor(0, 0, 255, 0.10 - percent / 10.0);
             ctx.fillStyle = utils.makeColor(this.outerColorR, this.outerColorG, this.outerColorB, 0.34 - percent / 3.0);
             ctx.arc(this.x, this.y, circleRadius * 1.5, 0, 2 * Math.PI, false);
             ctx.fill();
             ctx.closePath();
 
-            // Draw the yellow-ish smaller circle
             ctx.beginPath();
-            ctx.fillStyle = utils.makeColor(200, 200, 0, 0.5 - percent / 5.0);
+            ctx.fillStyle = utils.makeColor(255, 255, 0, 0.5 - percent / 5.0);
             ctx.arc(this.x, this.y, circleRadius * 0.5, 0, 2 * Math.PI, false);
             ctx.fill();
             ctx.closePath();
         }
 
         ctx.restore();
-
-/*
-        let maxRadius = canvasHeight / 2;
-                ctx.save();
-                ctx.globalAlpha = 0.5;
-                for (let i = 0; i < audioData.length; i++) {
-        
-                    // red-ish circles
-                    let percent = audioData[i] / 255;
-                    let circleRadius = percent * maxRadius;
-                    ctx.beginPath();
-                    //ctx.lineWidth = spriteParams1.width; // Sets the stroke width to 5 pixels
-                    ctx.fillStyle = utils.makeColor(this.innerColorR, this.innerColorG, this.innerColorB, 0.34 - percent / 3.0);
-                    ctx.strokeStyle = utils.makeColor(this.outerColorR, this.outerColorG, this.outerColorB, 0.34 - percent / 3.0);
-                    ctx.arc(spriteParams1.x, spriteParams1.y, circleRadius, 0, 2 * Math.PI, false);
-                    ctx.fill();
-                    ctx.closePath();
-        
-                    //blue-ish circles bigger, more transparent
-                    ctx.beginPath();
-                    ctx.fillStyle = utils.makeColor(0, 0, 255, .10 - percent / 10.0);
-                    ctx.arc(spriteParams1.x, spriteParams1.y, circleRadius * 1.5, 0, 2 * Math.PI, false)
-                    ctx.fill();
-                    ctx.closePath();
-        
-                    // yellow-ish circles, smaller 
-                    //ctx.save();  // maybe its this.  update: it was
-                    ctx.beginPath();//huh? theirs a problem here... but.. what?
-                    ctx.fillStyle = utils.makeColor(200, 200, 0, .5 - percent / 5.0);
-                    ctx.arc(spriteParams1.x, spriteParams1.y, circleRadius * .50, 0, 2 * Math.PI, false);
-                    ctx.fill();
-                    ctx.closePath();
-        
-        
-        
-        
-                    ctx.restore();
-                }
-                ctx.restore();*/
 
     }
 

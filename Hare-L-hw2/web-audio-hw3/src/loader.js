@@ -2,9 +2,7 @@ import * as main from "./main.js";
 window.onload = () => {
 	console.log("window.onload called");
 	// 1 - do preload here - load fonts, images, additional sounds, etc...
-
-	// Fetch the JSON data from an external file (appData.json)
-	fetch('data/av-data.json')  // Assuming the JSON file is in the same directory
+	fetch('data/av-data.json')  
 		.then(response => {
 			if (!response.ok) {
 				throw new Error('Failed to load JSON data');
@@ -27,7 +25,6 @@ window.onload = () => {
 
 			//debugger
 
-			// preload sprites (if you want to initialize or manipulate them)
 			const spriteData1 = appData.spriteData1;
 			const spriteData2 = appData.spriteData2;
 
