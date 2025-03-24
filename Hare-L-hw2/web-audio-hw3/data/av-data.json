@@ -1,0 +1,54 @@
+{
+    "appTitle": "Lennon's Audio App",
+    
+    "audioFiles": [
+
+
+      {
+        "fileName": "New-Adventure-Theme.mp3",
+        "trackName": "New Adventure Theme"
+      },
+      {
+        "fileName": "Peanuts-Theme.mp3",
+        "trackName": "Peanuts Theme"
+      },
+      {
+        "fileName": "The-Picard-Song.mp3",
+        "trackName": "The Picard Song"
+      },
+      {
+        "fileName": "Tempest-Hell.mp3",
+        "trackName": "Tempest Hell"
+      },
+      {
+        "fileName": "Neon-Cheese-Irritation.mp3",
+        "trackName": "Neon Cheese Irritation"
+      },
+
+      {
+        "fileName": "Brass-Guitar.mp3",
+        "trackName": "Brass Guitar"
+      },
+      {
+        "fileName": "perfect-fart.mp3",
+        "trackName": "Choose A Song"
+      }
+    ],
+    
+    "spriteData1": {
+      "x": 50,
+      "y": 100,
+      "radius": 30,
+      "outerColor": "#FF0000",
+      "innerColor": "#00FF00",
+      "speed": 5
+    },
+    "spriteData2": {
+      "x": 50,
+      "y": 100,
+      "radius": 30,
+      "outerColor": "#FF0000",
+      "innerColor": "#00FF00",
+      "speed": 5
+    }
+  }
