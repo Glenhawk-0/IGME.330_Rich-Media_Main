@@ -36,8 +36,8 @@
     ],
     
     "spriteData1": {
-      "x": 50,
-      "y": 100,
+      "x": 0,
+      "y": 400,
       "radius": 30,
       "outerColorR": "120",
       "outerColorG": "20",
@@ -48,11 +48,15 @@
       "width": 5
     },
     "spriteData2": {
-      "x": 50,
-      "y": 100,
+      "x": 800,
+      "y": 400,
       "radius": 30,
-      "outerColor": "#FF0000",
-      "innerColor": "#00FF00",
-      "speed": 5
+      "outerColorR": "120",
+      "outerColorG": "20",
+      "outerColorB": "70",
+      "innerColorR": "30",
+      "innerColorG": "210",
+      "innerColorB": "100",
+      "width": 5
     }
   }

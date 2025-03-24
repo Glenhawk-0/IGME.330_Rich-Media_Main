@@ -26,7 +26,7 @@ function setupCanvas(canvasElement, analyserNodeRef) {
 
 }
 
-function draw(params = {}, spriteParams1 , spriteParams2) {
+function draw(params = {}, spriteParams1, spriteParams2) {
     // 1 - populate the audioData array with the frequency data from the analyserNode
     // notice these arrays are passed "by reference" 
 
@@ -115,7 +115,49 @@ function draw(params = {}, spriteParams1 , spriteParams2) {
 
     //sprite 1
     if (true == true) {
-        let maxRadius = canvasHeight / 4;
+        let maxRadius = canvasHeight / 2;
+        ctx.save();
+        ctx.globalAlpha = 0.5;
+        for (let i = 0; i < audioData.length; i++) {
+
+            // red-ish circles
+            let percent = audioData[i] / 255;
+            let circleRadius = percent * maxRadius;
+            ctx.beginPath();
+            //ctx.lineWidth = spriteParams1.width; // Sets the stroke width to 5 pixels
+            ctx.fillStyle = utils.makeColor(spriteParams1.innerColorR, spriteParams1.innerColorG, spriteParams1.innerColorB, .34 - percent / 3.0);
+            ctx.strokeStyle = utils.makeColor(spriteParams1.outerColorR, spriteParams1.outerColorG, spriteParams1.outerColorB, .34 - percent / 3.0);
+            ctx.arc(spriteParams1.x, spriteParams1.y, circleRadius, 0, 1.5 * Math.PI, false);
+            ctx.fill();
+            ctx.closePath();
+
+            //blue-ish circles bigger, more transparent
+            ctx.beginPath();
+            ctx.fillStyle = utils.makeColor(0, 0, 255, .10 - percent / 10.0);
+            ctx.arc(spriteParams1.x, spriteParams1.y, circleRadius * 1.5, 0, 1.5 * Math.PI, false)
+            ctx.fill();
+            ctx.closePath();
+
+            // yellow-ish circles, smaller 
+            //ctx.save();  // maybe its this.  update: it was
+            ctx.beginPath();//huh? theirs a problem here... but.. what?
+            ctx.fillStyle = utils.makeColor(200, 200, 0, .5 - percent / 5.0);
+            ctx.arc(spriteParams1.x, spriteParams1.y, circleRadius * .50, 0, 1.5 * Math.PI, false);
+            ctx.fill();
+            ctx.closePath();
+
+
+
+
+            ctx.restore();
+        }
+        ctx.restore();
+    }
+
+
+    //sprite 2
+    if (true == true) {
+        let maxRadius = canvasHeight / 2;
         ctx.save();
         ctx.globalAlpha = 0.5;
         for (let i = 0; i < audioData.length; i++) {
@@ -124,12 +166,27 @@ function draw(params = {}, spriteParams1 , spriteParams2) {
 
             let circleRadius = percent * maxRadius;
             ctx.beginPath();
-            ctx.lineWidth = spriteParams1.width; // Sets the stroke width to 5 pixels
-            ctx.fillStyle = utils.makeColor(spriteParams1.innerColorR, spriteParams1.innerColorG, spriteParams1.innerColorB, .34 - percent / 3.0);
-            ctx.strokeStyle = utils.makeColor(spriteParams1.outerColorR, spriteParams1.outerColorG, spriteParams1.outerColorB, .34 - percent / 3.0);
-            ctx.arc( spriteParams1.x , spriteParams2.y , circleRadius, 0, 2 * Math.PI, false);
+            //ctx.lineWidth = spriteParams1.width; // Sets the stroke width to 5 pixels
+            ctx.fillStyle = utils.makeColor(spriteParams2.innerColorR, spriteParams2.innerColorG, spriteParams2.innerColorB, .34 - percent / 3.0);
+            ctx.strokeStyle = utils.makeColor(spriteParams2.outerColorR, spriteParams2.outerColorG, spriteParams2.outerColorB, .34 - percent / 3.0);
+            ctx.arc(spriteParams2.x, spriteParams2.y, circleRadius, 0, 2 * Math.PI, false);
             ctx.fill();
             ctx.closePath();
+
+                        //blue-ish circles bigger, more transparent
+                        ctx.beginPath();
+                        ctx.fillStyle = utils.makeColor(0, 0, 255, .10 - percent / 10.0);
+                        ctx.arc(spriteParams2.x, spriteParams2.y, circleRadius * 1.3, 0, 2 * Math.PI, false)
+                        ctx.fill();
+                        ctx.closePath();
+            
+                        // yellow-ish circles, smaller 
+                        //ctx.save();  // maybe its this.  update: it was
+                        ctx.beginPath();//huh? theirs a problem here... but.. what?
+                        ctx.fillStyle = utils.makeColor(200, 200, 0, .5 - percent / 5.0);
+                        ctx.arc(spriteParams2.x, spriteParams2.y, circleRadius * .50, 0, 2 * Math.PI, false);
+                        ctx.fill();
+                        ctx.closePath();
 
 
 
