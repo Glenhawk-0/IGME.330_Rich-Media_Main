@@ -1,0 +1,14 @@
+II: 
+the two audio effect nodes i added were Treble And Bass
+
+III:
+the class name is just Sprite and i made one called spriteParams1 and spriteParams2, 
+they are both circles with 3 layers of colors that take the audio frequency/wavelength to pulsate with the music
+
+IV:
+in av-data.json i put in the x and y coordinates for the sprites, 
+along with the RGB Values for the inner and outer layers.
+
+V:
+i did the bare minimum and changed some colors because im talentless. 
+so i would give myself a 0% becuase it is blatantly obvious that i lack the talent to make something impressive. 
