@@ -1,40 +1,35 @@
+type SuccessCallback = (param: object[]) => void; // Callback for successful data retrieval
+type ErrorCallback = (param: string) => void; // Callback for error handling
+
+
 // Fetches data from the Adoptable Creatures API
 // - type: The type of creature to fetch (e.g., "cats", "dogs", "dragons")
 // - callback: Function to run with the fetched data if successful
 // - errorCallback: Function to run with an error message if the request fails
-
-type SuccessCallback = (param: object[]) => void; // Callback for successful data retrieval
-type ErrorCallback = (param: string) => void; // Callback for error handling
-
-// i had alot of trouble getting the "getData" to work but i think its just because i dont really understand fetch too well. i tried rewriting it and using an example as a base but it was no good. im sorry
-
-export function getData(type, callback, errorCallback) {
+export function getData(type: string,callback: SuccessCallback,errorCallback: ErrorCallback): void {
     //const API_URL = "https://people.rit.edu/anwigm/330/practical/api.php";
     fetch (`https://people.rit.edu/anwigm/330/practical/api.php?type=${type}`)
     .then((response) => {
-      if (response.ok){
-        return response.json();
-      } else    if(!response.ok){
-        errorCallback("Network error occurred while fetching data.");
+      if (!response.ok){
+                 // Handle HTTP errors
+                 errorCallback("Error fetching data from the server.");
+        return;
+      } 
+
+      return response.json()
+
+    })
+    .then((data: object[]) => {  // thank you so much travis. i was able to look at some stuff and i instantly jogged my brain with data: something something
+     if(data){
+      callback(data);
+     }
+
+    })
+    .catch(() => {
     
-       }
-
-      return response.text().then((text) => {
-        throw text;
-      });
-
-    })
-    .then((json) => {
-      callback(json);
-    })
-    .catch((error) => {
-      if (error){
           // Handle JSON parsing errors
           errorCallback("Error parsing data from the server.");
-      } else {
-                // Handle HTTP errors
-                errorCallback("Error fetching data from the server.");
-      }
+    
     });
 
     
@@ -74,25 +69,24 @@ export function getData(type, callback, errorCallback) {
    // };
   
     // Send the request
-   // xhr.send();
+   // 
 
    /*if(!response.ok){
     errorCallback("Network error occurred while fetching data.");
 
+    xhr.send();
+
    }*/
 
+
+    // im sorry i just couldnt figure out how to include the 
+    //    errorCallback("Network error occurred while fetching data."); and 
+//          xhr.send();
+    
+    
+
   };
   
 
-/*
-    // Handle network errors
-    xhr.onerror = function () {
-      errorCallback("Network error occurred while fetching data.");
-    };
-  
-    // Send the request
-    xhr.send();
-  };
-  */
 
   

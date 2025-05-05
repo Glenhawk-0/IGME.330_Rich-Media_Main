@@ -1,15 +1,17 @@
-// Updates the DOM to display the fetched data
-// - data: An array of objects containing creature details
-
-
 interface Creature {
   // provide types for picture, name, breed,
   // and location (all strings)
-  
+  picture: string;
+  name: string;
+  breed: string;
+  location: string;
+
   }
 
-export function renderResults(data) {
-  const resultsContainer = document.querySelector("#results");
+// Updates the DOM to display the fetched data
+// - data: An array of objects containing creature details
+export function renderResults(data: Creature[]): void {
+  const resultsContainer = document.querySelector("#results") as HTMLElement;
   resultsContainer.innerHTML = ""; // Clear existing results
 
   data.forEach((item) => {
@@ -29,22 +31,22 @@ export function renderResults(data) {
 
     //resultsContainer.innerHTML = `${resultsContainer.innerHTML} ${card} butt` ;// this probably dont work
 
-    resultsContainer.classList.add(card);
+    resultsContainer.appendChild(card);
 
   });
 }
 
 // Displays an error message on the page
 // - message: The error message to show
-export function showError(message) {
-  const errorMessage = document.querySelector("#errorMessage");
+export function showError(message: string): void {
+  const errorMessage = document.querySelector("#errorMessage") as HTMLElement; // no wonder it wasnt working, i forgot all about these. as BlahBlahBlah
   errorMessage.textContent = message;
   errorMessage.classList.remove("hidden"); // Make the error visible  //hmmm
 }
 
 // Clears any visible error message from the page
 export function clearError() {
-  const errorMessage = document.querySelector("#errorMessage");
+  const errorMessage = document.querySelector("#errorMessage") as HTMLElement;
   errorMessage.textContent = "";
   errorMessage.classList.add("hidden"); // Hide the error
 }

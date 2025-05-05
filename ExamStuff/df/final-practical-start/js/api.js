@@ -4,47 +4,17 @@
 // - errorCallback: Function to run with an error message if the request fails
 export function getData(type, callback, errorCallback) {
     const API_URL = "https://people.rit.edu/anwigm/330/practical/api.php";
-    fetch (`${API_URL}?type=${type}`)
-    .then((response) => {
-      
-      if (response.ok){
-        return response.json()
-
-                 
-       
-      } else if (!response.ok){
-// Handle HTTP errors
-errorCallback("Error fetching data from the server.");
-
-      }
-
-      
-    })
-    .then((data) => {
-     if(data){
-      callback(data);
-     }
-
-    })
-    .catch(() => {
-    
-          // Handle JSON parsing errors
-          errorCallback("Error parsing data from the server.");
-    
-    });
-
-    
-    /*
-    //const xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
   
     // Open a GET request to the API
-    //xhr.open("GET", `${API_URL}?type=${type}`, true);
+    xhr.open("GET", `${API_URL}?type=${type}`, true);
+  
     // Handle the API response
-    //xhr.onload = function () {
+    xhr.onload = function () {
       if (xhr.status >= 200 && xhr.status < 300) {
         try {
           // Parse the response and call the success callback
-          //const data = JSON.parse(xhr.responseText);
+          const data = JSON.parse(xhr.responseText);
 
           callback(data);
         } catch (err) {
@@ -55,32 +25,8 @@ errorCallback("Error fetching data from the server.");
         // Handle HTTP errors
         errorCallback("Error fetching data from the server.");
       }
-    });/**/
-
-
-   
-
+    };
   
-
-/////////////////
-
-    // Handle network errors
-   // .then (onerror) = function () {
-    //  errorCallback("Network error occurred while fetching data.");
-   // };
-  
-    // Send the request
-   // xhr.send();
-
-   /*if(!response.ok){
-    errorCallback("Network error occurred while fetching data.");
-
-   }*/
-
-  };
-  
-
-/*
     // Handle network errors
     xhr.onerror = function () {
       errorCallback("Network error occurred while fetching data.");
@@ -88,7 +34,5 @@ errorCallback("Error fetching data from the server.");
   
     // Send the request
     xhr.send();
-  };
-  */
-
+  }
   

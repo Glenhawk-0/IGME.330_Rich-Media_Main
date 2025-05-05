@@ -19,10 +19,6 @@ export function renderResults(data) {
     // ADD THE LINE OF CODE HERE THAT WILL ADD THE CARD 
     // TO END OF THE RESULTS CONTAINER
 
-    //resultsContainer.innerHTML = `${resultsContainer.innerHTML} ${card} butt` ;// this probably dont work
-
-    resultsContainer.appendChild(card);
-
   });
 }
 
@@ -31,7 +27,7 @@ export function renderResults(data) {
 export function showError(message) {
   const errorMessage = document.querySelector("#errorMessage");
   errorMessage.textContent = message;
-  errorMessage.classList.remove("hidden"); // Make the error visible  //hmmm
+  errorMessage.classList.remove("hidden"); // Make the error visible
 }
 
 // Clears any visible error message from the page

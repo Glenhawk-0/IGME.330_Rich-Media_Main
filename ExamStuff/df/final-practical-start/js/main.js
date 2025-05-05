@@ -1,22 +1,11 @@
-interface Creature {
-  // provide types for picture, name, breed,
-  // and location (all strings)
-  picture: string;
-  name: string;
-  breed: string;
-  location: string;
-
-  }
-
 // Import functions from api.js and ui.js
 
    // ADD TWO LINES OF CODE HERE TO IMPORT THE getData FUNCTION from api.js
-   import { getData} from "./api";
    // AND THE THREE FUNCTIONS IN ui.js
-   import {renderResults, showError,clearError } from "./ui";
+
 // Get references to the dropdown and button
-const creatureTypeSelect = document.querySelector("#creatureType") as HTMLSelectElement;
-const getDataButton = document.querySelector("#getDataButton") as HTMLButtonElement;
+const creatureTypeSelect = document.querySelector("#creatureType");
+const getDataButton = document.querySelector("#getDataButton");
 
 // Set up event listener for the "Get Data" button
 getDataButton.addEventListener("click", () => {
@@ -26,10 +15,10 @@ getDataButton.addEventListener("click", () => {
   // Fetch data for the selected type
   getData(
     selectedType,
-    (data: Creature[]) => {  
+    (data) => {
       renderResults(data); // Render the results on success
     },
-    (errorMessage: string) => {
+    (errorMessage) => {
       showError(errorMessage); // Show an error message on failure
     }
   );
